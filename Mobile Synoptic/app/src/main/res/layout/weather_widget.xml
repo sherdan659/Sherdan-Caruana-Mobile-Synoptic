@@ -1,35 +1,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.Synoptic.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:theme="@style/Theme.Synoptic.AppWidgetContainer">
+
+    <ImageView
+        android:id="@+id/batteryImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/no_image" />
 
     <TextView
         android:id="@+id/locationTextView"
         style="@style/Widget.Synoptic.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
         android:text="Location"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/statusTextView"
         style="@style/Widget.Synoptic.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
         android:text="Weather"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
+    <!-- Battery ImageView with default image -->
     <TextView
         android:id="@+id/temperatureTextView"
         style="@style/Widget.Synoptic.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
         android:text="Temperature °C"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/warningTextView"
+        style="@style/Widget.Synoptic.AppWidget.InnerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        android:text="EXTREME WEATHER WARNING"
+        android:textColor="#FF0000"
+        android:textSize="14sp"
+        android:visibility="gone" />
 </LinearLayout>

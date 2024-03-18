@@ -1,13 +1,21 @@
 package com.example.synoptic
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.os.BatteryManager
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.Timer
+import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var sharedPreferences: SharedPreferences
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,8 +41,23 @@ class MainActivity : AppCompatActivity() {
 
         setupCityMenu()
         setupUpdateButton()
+
+        //Starts the process of the battery
+        WeatherWidget.startBatteryTimer(applicationContext)
+
     }
 
+
+
+
+
+
+
+
+
+
+
+    // weather
     private fun setupCityMenu() {
         val cities = arrayOf("Valletta", "Paris", "Rome")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cities)
