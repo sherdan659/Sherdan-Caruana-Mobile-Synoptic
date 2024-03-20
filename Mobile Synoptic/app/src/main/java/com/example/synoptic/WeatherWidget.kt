@@ -28,6 +28,8 @@ import java.util.TimerTask
 
 class WeatherWidget : AppWidgetProvider() {
 
+    // GITHUB LINK  https://github.com/sherdan659/Sherdan-Caruana-Mobile-Synoptic
+
     companion object {
         //Battery
         private var timer: Timer? = null
@@ -45,7 +47,7 @@ class WeatherWidget : AppWidgetProvider() {
 
                     receiver = BatteryBroadcastReceiver()
 
-                    // Register the receiver
+                    //Register the receiver
                     val filter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
                     context.registerReceiver(receiver, filter)
 
@@ -208,16 +210,12 @@ class WeatherWidget : AppWidgetProvider() {
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         for (appWidgetId in appWidgetIds) {
 
-
-            // Set click event to open activity
-            val intent = Intent(context, DataDisplay::class.java)  // Updated to DataDisplay::class.java
+            val intent = Intent(context, DataDisplay::class.java)
             val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
             val views = RemoteViews(context.packageName, R.layout.weather_widget)
             views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
 
-            // Update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views)
-
 
         }
     }

@@ -47,7 +47,7 @@ class BatteryBroadcastReceiver : BroadcastReceiver() {
     }
 
     private fun savesharedpreferences(context: Context, state: String) {
-        val currentTime = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("dd-MM-yyyy-ss-mm-HH", Locale.getDefault()).format(Date())
         val sharedPref = context.getSharedPreferences(
             "com.example.synoptic.PREFS",
             Context.MODE_PRIVATE
@@ -57,5 +57,9 @@ class BatteryBroadcastReceiver : BroadcastReceiver() {
             apply()
         }
         Log.d("BatteryBroadcastReceiver", "Charging state saved: $state, Time: $currentTime")
+
+
+
+
     }
 }

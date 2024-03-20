@@ -11,6 +11,8 @@ import com.google.firebase.messaging.RemoteMessage
 
 class FirebaseMessageHandler : FirebaseMessagingService() {
 
+    // GITHUB LINK  https://github.com/sherdan659/Sherdan-Caruana-Mobile-Synoptic
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("onMessageReceived", "This is a message")
         super.onMessageReceived(remoteMessage)
@@ -32,7 +34,6 @@ class FirebaseMessageHandler : FirebaseMessagingService() {
         views.setViewVisibility(R.id.warningTextView, View.VISIBLE)
         views.setTextViewText(R.id.warningTextView, weatherWarning)
 
-        // Update the widget
         val widgetManager = AppWidgetManager.getInstance(context)
         val widgetComponent = ComponentName(context, WeatherWidget::class.java)
         widgetManager.updateAppWidget(widgetComponent, views)

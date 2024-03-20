@@ -20,6 +20,9 @@ import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
 
+    // GITHUB LINK  https://github.com/sherdan659/Sherdan-Caruana-Mobile-Synoptic
+
+
     companion object {
         const val PREFS_NAME = "WeatherWidgetPrefs"
         const val PREF_SELECTED_CITY = "selectedCity"
@@ -33,6 +36,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
+
         setContentView(R.layout.activity_main)
 
         cityMenu = findViewById(R.id.cityMenu)
@@ -80,9 +88,6 @@ class MainActivity : AppCompatActivity() {
     private fun saveSelectedCity(city: String) {
         sharedPreferences.edit().putString(PREF_SELECTED_CITY, city).apply()
     }
-
-
-
 
 
 }

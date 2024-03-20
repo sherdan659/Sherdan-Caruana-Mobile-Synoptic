@@ -30,7 +30,6 @@ class DataDisplay : AppCompatActivity() {
             }
         }
         Log.d("Itmes", chargingStateItems.toString())
-        // Pass the data to the adapter
 
         val adapter = ChargingStateAdapter(chargingStateItems)
         recyclerView.adapter = adapter
