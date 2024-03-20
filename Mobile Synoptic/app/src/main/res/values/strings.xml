@@ -9,5 +9,6 @@
         <item>Paris</item>
         <item>Rome</item>
     </string-array>
+    <string name="title_activity_shared_list">SharedList</string>
 
 </resources>

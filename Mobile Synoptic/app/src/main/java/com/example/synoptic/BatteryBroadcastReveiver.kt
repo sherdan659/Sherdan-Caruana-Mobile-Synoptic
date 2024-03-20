@@ -15,6 +15,7 @@ class BatteryBroadcastReceiver : BroadcastReceiver() {
     companion object {
         var batteryState: String = "NORMAL"
         var previousChargingState: Boolean = false
+        var counts = 1
     }
 
 
@@ -45,15 +46,14 @@ class BatteryBroadcastReceiver : BroadcastReceiver() {
         }
     }
 
-
     private fun savesharedpreferences(context: Context, state: String) {
-        val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.getDefault()).format(Date())
         val sharedPref = context.getSharedPreferences(
             "com.example.synoptic.PREFS",
             Context.MODE_PRIVATE
         )
         with(sharedPref.edit()) {
-            putString("charging_state", "$state,$currentTime")
+            putString("charging_state_$currentTime", "$state,$currentTime")
             apply()
         }
         Log.d("BatteryBroadcastReceiver", "Charging state saved: $state, Time: $currentTime")

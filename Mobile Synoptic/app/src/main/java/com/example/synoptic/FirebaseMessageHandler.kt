@@ -14,7 +14,6 @@ class FirebaseMessageHandler : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("onMessageReceived", "This is a message")
         super.onMessageReceived(remoteMessage)
-        // Extract the weather information from the FCM message
         val extremeWeatherWarning = remoteMessage.data["weather_warning"]
 
         // Display a notification for the extreme weather warning
@@ -23,7 +22,8 @@ class FirebaseMessageHandler : FirebaseMessagingService() {
         }
     }
 
-    private fun updateWidgetWithWarning(context: Context, weatherWarning: String) {
+
+    fun updateWidgetWithWarning(context: Context, weatherWarning: String) {
         Log.d("updateWidgetWithWarning", "This is a message")
 
         val views = RemoteViews(context.packageName, R.layout.weather_widget)
@@ -37,4 +37,5 @@ class FirebaseMessageHandler : FirebaseMessagingService() {
         val widgetComponent = ComponentName(context, WeatherWidget::class.java)
         widgetManager.updateAppWidget(widgetComponent, views)
     }
+
 }

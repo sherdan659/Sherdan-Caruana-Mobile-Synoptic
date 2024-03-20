@@ -1,6 +1,7 @@
 package com.example.synoptic
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.BatteryManager
 import android.os.Bundle
@@ -28,8 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var sharedPreferences: SharedPreferences
 
-
-
+    private lateinit var switchActivityButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +45,13 @@ class MainActivity : AppCompatActivity() {
         //Starts the process of the battery
         WeatherWidget.startBatteryTimer(applicationContext)
 
+
+        // to switch to other recycle view   remove when  on click wiget works
+        switchActivityButton = findViewById(R.id.switchActivityButton)
+        switchActivityButton.setOnClickListener {
+            startActivity(Intent(this, DataDisplay::class.java))
+        }
     }
-
-
-
-
-
-
-
-
-
-
 
     // weather
     private fun setupCityMenu() {
@@ -84,4 +80,9 @@ class MainActivity : AppCompatActivity() {
     private fun saveSelectedCity(city: String) {
         sharedPreferences.edit().putString(PREF_SELECTED_CITY, city).apply()
     }
+
+
+
+
+
 }

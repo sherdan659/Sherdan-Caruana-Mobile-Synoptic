@@ -1,5 +1,7 @@
 package com.example.synoptic
 
+import android.annotation.SuppressLint
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.BroadcastReceiver
@@ -27,13 +29,15 @@ import java.util.TimerTask
 class WeatherWidget : AppWidgetProvider() {
 
     companion object {
-
         //Battery
-
         private var timer: Timer? = null
         lateinit var receiver: BatteryBroadcastReceiver
+
+
         fun startBatteryTimer(context: Context) {
             Log.d("startBatteryTimer", "startBatteryTimer")
+
+
 
             timer = Timer()
             timer?.scheduleAtFixedRate(object : TimerTask() {
@@ -77,7 +81,7 @@ class WeatherWidget : AppWidgetProvider() {
                         appWidgetManager.updateAppWidget(thisWidget, views)
                     }
                 }
-            }, 0, 3600000) // 5000 just for testing  (5seconds) Needs to be 1Hour (3600000)
+            }, 0, 5000) // 5000 just for testing  (5seconds) Needs to be 1Hour (3600000)
         }
 
 
@@ -112,11 +116,6 @@ class WeatherWidget : AppWidgetProvider() {
                 //broadcast will do the red battery image
             }
         }
-
-
-
-
-
 
         // Weather
         private const val API_URL = "https://api.jamesdecelis.com/api/v1/weather/"
@@ -156,7 +155,6 @@ class WeatherWidget : AppWidgetProvider() {
                 }
             }
 
-            // Hide the warning text view
             views.setViewVisibility(R.id.warningTextView, View.GONE)
 
             appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -204,5 +202,24 @@ class WeatherWidget : AppWidgetProvider() {
             }
         }
 
+
     }
+
+    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+        for (appWidgetId in appWidgetIds) {
+
+
+            // Set click event to open activity
+            val intent = Intent(context, DataDisplay::class.java)  // Updated to DataDisplay::class.java
+            val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            val views = RemoteViews(context.packageName, R.layout.weather_widget)
+            views.setOnClickPendingIntent(R.id.widget_container, pendingIntent)
+
+            // Update the widget
+            appWidgetManager.updateAppWidget(appWidgetId, views)
+
+
+        }
+    }
+
 }
